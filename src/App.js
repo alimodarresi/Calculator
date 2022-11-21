@@ -1,173 +1,186 @@
 import { useState } from "react";
 
+
+import './index.css'
+
 function App() {
-  let initialState = [];
-  const [state, setState] = useState(initialState);
-  const [textValue, setTextValue] = useState('');
-  const [count, setCount] = useState(0);
-  const [filterout, setFilterOut] = useState([]);
 
-  const linkList = [
-    {
-      option: 'completed',
-    },
-    {
-      option:'active',
-    },
-    {
-      option:'all',
-    }
-  ];
-
-
-  const changeHandler = e => {
-    setTextValue(e.target.value);
-  }
-
-  const keyHandler = e => {
-    if (e.key === 'Enter' && e.target.value){
-      setCount(c => c + 1);
-      setState(oldArray => [...oldArray, 
-        {
-          value : e.target.value,
-          id: count,
-          completed : false,
-        }
-      ]);
-      setTextValue('');
-    }
-  }
-
+  const [num, setNum] = useState(0);
+  const [savednum, setsavednum] = useState(0);
+  const [state, setState] = useState('');
+  const [epushed, setepushed] = useState(false);
+  const [pushed, setpushed] = useState(false);
   
-
-  const CheckBox = (props) => {
+  const num0set = () => {
     
-    const {data} = props;
-
-    const checkBoxHandler = check => {
-      let newArray = [...state];
-      newArray[data.id].completed = !newArray[data.id].completed;
-      setState(newArray);
-
+    if(pushed || epushed){
+      setNum(0);
+      setepushed(false);
+      setpushed(false);
     }
-
-    return(
-      <>
-         <li>
-                <input 
-                type="checkbox"
-                checked={data.completed}
-                onChange={checkBoxHandler}
-              />
-
-              <label>{data.value}</label>
-          </li>
-      </>
-    );
-  }
-
-  const completed = () =>
-  {
-    let out = [];
-    state.map(
-      element => {
-        if (element.completed === true){
-          out.push(element);
-        }
-      }
-    )
-
-    return out;
-
-  }
-  const active = () =>
-  {
-    let out = [];
-    state.map(
-      element => {
-        if (element.completed === false){
-          out.push(element);
-        }
-      }
-    )
-
-    return out;
-
-  }
-  const All = () =>
-  {
-    return state;
-
-  }
-
-  const LinkClickHandler = (option) => {
-    switch(option){
-      case 'completed':
-        const filterC = completed();
-        setFilterOut(filterC);
-        break;
-      case 'active':
-        const filterA = active();
-        setFilterOut(filterA);
-        break;
-      case 'all':
-        const filterAll = All();
-        setFilterOut(filterAll);
-        break;
-      default:
-        console.log('none');
+    else{
+      setNum(num*10);
     }
   }
- 
-  const Link = () => {
-    return (
-      <div id="link-div">
-        {linkList.map(
-          element => (
-            <span>
-              <a onClick={()=>LinkClickHandler(element.option)}>{element.option}</a>
-            </span>
-        )
-        )}
-      </div>
-    );
+  const num1set = () => {
+    if(pushed || epushed){
+      setNum(1);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 1);
+    }
   }
-
+  const num2set = () => {
+    if(pushed || epushed){
+      setNum(2);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 2);
+    }
+  }
+  const num3set = () => {
+    if(pushed || epushed){
+      setNum(3);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 3);
+    }
+  }
+  const num4set = () => {
+    if(pushed || epushed){
+      setNum(4);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 4);
+    }
+  }
+  const num5set = () => {
+    if(pushed || epushed){
+      setNum(5);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 5);
+    }
+  }
+  const num6set = () => {
+    if(pushed || epushed){
+      setNum(6);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 6);
+    }
+  }
+  const num7set = () => {
+    if(pushed || epushed){
+      setNum(7);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 7);
+    }
+  }
+  const num8set = () => {
+    if(pushed || epushed){
+      setNum(8);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 8);
+    }
+  }
+  const num9set = () => {
+    if(pushed || epushed){
+      setNum(9);
+      setepushed(false);
+      setpushed(false);
+    }
+    else{
+      setNum(num*10 + 9);
+    }
+  }
   
-  return(
-    <div id="body-div">
-      <h1>Hi, I am Ali</h1>
-      <input
-        autoFocus 
-        type="text"
-        onChange={changeHandler}
-        onKeyDown={keyHandler}
-        value={textValue}
-        placeholder="Add new"
-      />
-      <ul>
-        {
-          state.map(
-            item => (
-             <CheckBox data={item}/>
-            )
-          )
-        }
-      </ul>
+  const mult = () => {
+    setState('mult');
+    setsavednum(num);
+    setpushed(true);
 
-      <Link/>
-      <ul>
-        {filterout.map(
-          element => (
-            <li>
-              {element.value}
-            </li>
-          )
-        )}
-      </ul>
-      <p>Wish you best luck</p>
+  }
+
+  const sum = () => {
+    setState('sum');
+    setsavednum(num);
+    setpushed(true);
+  }
+  const minus = () => {
+    setState('minus');
+    setsavednum(num);
+    setpushed(true);
+  }
+
+  const equal = () => {
+    switch(state){
+      case 'sum':
+        setNum(num + savednum);
+        setepushed(true);
+        break;
+      case 'minus':
+        setNum(savednum - num);
+        setepushed(true);
+        break;
+      case 'mult':
+        setNum(num * savednum);
+        setepushed(true);
+        break;
+    }
+  }
+
+  const clean = () => {
+    setNum(0);
+    setpushed(false);
+    setepushed(false);
+    setState('');
+    setsavednum(0);
+  }
+
+
+  return (
+    <div className="gridc">
+      <input 
+        value={num}
+        
+      />
+      <button onClick={num7set}>7</button>
+      <button onClick={num8set}>8</button>
+      <button onClick={num9set}>9</button>
+      <button onClick={mult}>*</button>
+      <button onClick={num4set}>4</button>
+      <button onClick={num5set}>5</button>
+      <button onClick={num6set}>6</button>
+      <button onClick={minus}>-</button>
+      <button onClick={num1set}>1</button>
+      <button onClick={num2set}>2</button>
+      <button onClick={num3set}>3</button>
+      <button onClick={sum}>+</button>
+      <button className="item0" onClick={num0set }>0</button>
+      <button onClick={clean}>C</button>
+      <button onClick={equal}>=</button>
+      
     </div>
   );
-}
+} 
 
 export default App;
